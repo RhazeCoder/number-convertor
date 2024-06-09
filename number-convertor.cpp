@@ -3,6 +3,8 @@
 
 using namespace std;
 
+string alpha[6] = {"A", "B", "C", "D", "E", "F"};
+
 void convert(int decimal) {
   int deci1 = decimal, deci2 = decimal, deci3 = decimal;
   string binary, octal, hexa;
@@ -22,7 +24,6 @@ void convert(int decimal) {
     if (deci3 != 0) {
       int hexcode = deci3 % 16;
       if (hexcode >= 10) {
-        string alpha[6] = {"A", "B", "C", "D", "E", "F"};
         hexa = alpha[hexcode - 10] + hexa;
       } else {
         hexa = to_string(hexcode) + hexa;
