@@ -10,25 +10,24 @@ void convert(int decimal) {
   while (deci1 > 0) {
     //	to binary
     binary = to_string(deci1 % 2) + binary;
-    deci1 = deci1 / 2;
+    deci1 /= 2;
 
     //	to octal
-    if (!deci2 == 0) {
+    if (deci2 != 0) {
       octal = to_string(deci2 % 8) + octal;
-      deci2 = deci2 / 8;
+      deci2 /= 8;
     }
 
     //	to hexadecimal
-    if (!deci3 == 0) {
+    if (deci3 != 0) {
       int hexcode = deci3 % 16;
       if (hexcode >= 10) {
         string alpha[6] = {"A", "B", "C", "D", "E", "F"};
         hexa = alpha[hexcode - 10] + hexa;
-
       } else {
-        hexa = to_string(deci3 % 16) + hexa;
+        hexa = to_string(hexcode) + hexa;
       }
-      deci3 = deci3 / 16;
+      deci3 /= 16;
     }
   }
 
@@ -47,9 +46,9 @@ int main() {
     if (decimal > 0) {
       convert(decimal);
       cout << "\n-----------\n";
-      cout << "Convert again? [y/n]: ";
+      cout << "Convert again? [y]: ";
       cin >> choice;
-      if (choice != 'y') break;
+      if (tolower(choice) != 'y') break;
       system("cls");
     }
   } while (true);
