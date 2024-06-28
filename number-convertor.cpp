@@ -1,58 +1,68 @@
 #include <iostream>
-#include <windows.h>
 
 using namespace std;
 
-string alpha[6] = {"A", "B", "C", "D", "E", "F"};
+string hexa[16] = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"};
 
-void convert(int decimal) {
-  int deci1 = decimal, deci2 = decimal, deci3 = decimal;
-  string binary, octal, hexa;
+string toBinary(int decimal) {
+	int quotient = decimal;
+	int remainder;
+	string output;
+	while (quotient > 0) {
+		remainder = quotient % 2;
+		output = to_string(remainder) + output;
+		quotient /= 2;
+	}
+	return output;
+}
 
-  while (deci1 > 0) {
-    //	to binary
-    binary = to_string(deci1 % 2) + binary;
-    deci1 /= 2;
+string toOctal(int decimal) {
+	int quotient = decimal;
+	int remainder;
+	string output;
+	while (quotient > 0) {
+		remainder = quotient % 8;
+		output = to_string(remainder) + output;
+		quotient /= 8;
+	}
+	return output;
+}
 
-    //	to octal
-    if (deci2 != 0) {
-      octal = to_string(deci2 % 8) + octal;
-      deci2 /= 8;
-    }
-
-    //	to hexadecimal
-    if (deci3 != 0) {
-      int hexcode = deci3 % 16;
-      if (hexcode >= 10) {
-        hexa = alpha[hexcode - 10] + hexa;
-      } else {
-        hexa = to_string(hexcode) + hexa;
-      }
-      deci3 /= 16;
-    }
-  }
-
-  cout << "\nBinary: " << binary;
-  cout << "\nOctal: " << octal;
-  cout << "\nHexadecimal: " << hexa << endl;
+string toHexadecimal(int decimal) {
+	int quotient = decimal;
+	int remainder;
+	string output;
+	while (quotient > 0) {
+		remainder = quotient % 16;
+		output = hexa[remainder] + output;
+		quotient /= 16;
+	}
+	return output;
 }
 
 int main() {
   int decimal;
   char choice;
-
+  
   do {
     cout << "Enter decimal number: ";
     cin >> decimal;
+
     if (decimal > 0) {
-      convert(decimal);
+      cout << "Binary: " << toBinary(decimal) << endl;
+      cout << "Octal: " << toOctal(decimal) << endl;
+      cout << "Hexadecimal: " << toHexadecimal(decimal) << endl;
+
       cout << "\n-----------\n";
       cout << "Convert again? [y]: ";
       cin >> choice;
+      cout << "\n=====================\n\n";
+      
       if (tolower(choice) != 'y') break;
-      system("cls");
-    }
-  } while (true);
-
+    } else {
+    	cout << "Invalid input!" << endl;
+		}
+  } while(true);
+  
   return 0;
 }
