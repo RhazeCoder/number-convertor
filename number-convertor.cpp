@@ -10,8 +10,8 @@ string toBinary(int decimal) {
 	string output;
 	while (quotient > 0) {
 		remainder = quotient % 2;
-		output = to_string(remainder) + output;
 		quotient /= 2;
+		output = to_string(remainder) + output;
 	}
 	return output;
 }
@@ -22,8 +22,8 @@ string toOctal(int decimal) {
 	string output;
 	while (quotient > 0) {
 		remainder = quotient % 8;
-		output = to_string(remainder) + output;
 		quotient /= 8;
+		output = to_string(remainder) + output;
 	}
 	return output;
 }
@@ -34,8 +34,8 @@ string toHexadecimal(int decimal) {
 	string output;
 	while (quotient > 0) {
 		remainder = quotient % 16;
-		output = hexa[remainder] + output;
 		quotient /= 16;
+		output = hexa[remainder] + output;
 	}
 	return output;
 }
